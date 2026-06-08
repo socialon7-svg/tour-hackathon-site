@@ -157,7 +157,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="행사 소개"
             title="지역 문제를 발견하고, 관광 데이터로 검증하는 실전 프로젝트"
-            description="참가자는 전문가 멘토링을 통해 아이디어를 고도화하고, 실제 대구 관광 현안에 적용 가능한 정책·서비스·비즈니스 모델을 제안합니다."
+            description="선발된 10개 팀은 전문가 멘토링과 팀별 활동 지원을 바탕으로 아이디어를 구체화합니다. 단순 공모가 아니라, 데이터 기반 제안을 발표까지 완성해보는 집중 성장형 프로그램입니다."
           />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
@@ -277,11 +277,11 @@ export default function Home() {
           <div>
             <p className="text-sm font-extrabold text-mint">신청 방법</p>
             <h2 className="mt-3 break-keep text-3xl font-black leading-tight text-ink sm:text-4xl">
-              신청서를 작성해 이메일로 제출하세요
+              선발 기회를 놓치지 않도록 신청서를 먼저 제출하세요
             </h2>
             <p className="mt-5 max-w-2xl break-keep text-base leading-8 text-slate">
-              신청서를 다운로드해 작성한 뒤 {event.contactEmail}으로 제출하세요. 신청서와 사전 자료를 바탕으로 전문
-              심사위원 4인이 적합도를 심사하며, 최종 참여 팀은 개별 안내됩니다.
+              신청서를 다운로드해 작성한 뒤 {event.contactEmail}으로 제출하세요. 제출 자료를 바탕으로 전문 심사위원
+              4인이 최종 10개 팀을 선발하며, 선발 팀에는 멘토링과 본선 발표 준비 과정이 제공됩니다.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col">

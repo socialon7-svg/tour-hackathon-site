@@ -32,14 +32,14 @@ export const event = {
   teamSize: "팀당 2~4인",
   // 작년 모집 페이지의 신청 흐름을 참고해 신청서 작성 후 이메일 제출 방식으로 연결했습니다.
   applicationUrl:
-    "mailto:bpcode@naver.com?subject=APBL%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%B0%B8%EA%B0%80%EC%8B%A0%EC%B2%AD",
+    "mailto:high3308@naver.com?subject=APBL%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%B0%B8%EA%B0%80%EC%8B%A0%EC%B2%AD",
   applicationFormUrl: "/downloads/apbl-application-form.txt",
-  contactEmail: "bpcode@naver.com",
-  contactPhone: "053-719-3463",
+  contactEmail: "high3308@naver.com",
+  contactPhone: "000-000-0000",
   officeHours: "월~금 10:30~17:30",
   heroImage: "/images/apbl-hero.png",
   introduction:
-    "대학(원)생과 대구시민이 지역 사회의 당면 과제를 직접 발굴하고, 공공데이터와 빅데이터를 활용해 관광 도시 대구의 매력을 높이는 아이디어를 제안하는 실전형 지역혁신 프로젝트입니다.",
+    "전문가 멘토링, 팀별 활동 지원, 총 시상금 710만원이 함께하는 실전형 지역혁신 프로젝트입니다. 대구 관광의 문제를 데이터로 발견하고, 실제로 제안 가능한 아이디어로 발전시켜 보세요.",
   target: [
     "대구시에 주소를 둔 대학생 및 대학원생",
     "대구시에 주소를 둔 시민",
@@ -101,11 +101,11 @@ export const event = {
     },
     {
       question: "최종 몇 팀이 참여하나요?",
-      answer: "신청서 기반 예선 심사를 거쳐 최종 10개 팀을 선발합니다.",
+      answer: "신청서 기반 예선 심사를 거쳐 최종 10개 팀만 선발합니다. 선발 팀은 멘토링과 발표 준비 과정을 집중적으로 지원받습니다.",
     },
     {
       question: "멘토링은 어떤 분야로 진행되나요?",
-      answer: "기술, 관광 콘텐츠, 로컬관광 비즈니스 분야 전문가와 함께 아이디어를 고도화합니다.",
+      answer: "기술, 관광 콘텐츠, 로컬관광 비즈니스 분야 전문가와 함께 데이터 분석 방향과 아이디어의 실현 가능성을 고도화합니다.",
     },
     {
       question: "본선 발표 형식은 어떻게 되나요?",
