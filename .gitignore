@@ -1,0 +1,10 @@
+# Dependencies and build outputs should not be committed.
+node_modules
+.next
+out
+
+# Local environment files can contain private values.
+.env*
+
+# Temporary analysis files created while preparing the landing page.
+work/
