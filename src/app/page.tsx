@@ -236,7 +236,8 @@ export default function Home() {
                 이메일 문의
               </ActionLink>
             </div>
-            <div className="mt-7 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <div className="mt-7 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <MetricCard label={closed ? "모집 상태" : "마감까지"} value={closed ? "접수 종료" : `D-${daysLeft}`} />
               {event.highlights.map((item) => (
                 <MetricCard key={item.label} label={item.label} value={item.value} />
               ))}
@@ -253,8 +254,8 @@ export default function Home() {
               <p className="mt-2 text-base leading-7 text-slate">마감: {deadlineText}</p>
             </div>
             <div className="rounded-lg bg-[#eef6ff] px-4 py-3 text-left sm:text-right">
-              <p className="text-sm font-extrabold text-sky">{closed ? "모집 상태" : "마감까지"}</p>
-              <p className="mt-1 text-lg font-black text-ink">{closed ? "접수 종료" : `D-${daysLeft}`}</p>
+              <p className="text-sm font-extrabold text-sky">제출처</p>
+              <p className="mt-1 break-all text-lg font-black text-ink">{event.contactEmail}</p>
             </div>
           </div>
         </Container>
