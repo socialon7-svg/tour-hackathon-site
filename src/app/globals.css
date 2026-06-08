@@ -13,16 +13,22 @@ html {
 
 body {
   margin: 0;
-  background: #f7f6f1;
-  color: #17202a;
+  background: #f6faf8;
+  color: #162033;
   font-family:
     Arial,
     "Apple SD Gothic Neo",
     "Noto Sans KR",
     sans-serif;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 /* Keep section anchors visible below the sticky navigation. */
 section {
   scroll-margin-top: 96px;
+}
+
+a {
+  text-decoration: none;
 }

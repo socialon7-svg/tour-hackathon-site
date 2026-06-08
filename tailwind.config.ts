@@ -6,14 +6,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#17202A",
-        mint: "#1B998B",
-        leaf: "#48A868",
-        coral: "#F2674A",
-        paper: "#F7F6F1",
+        ink: "#162033",
+        slate: "#5D6978",
+        mint: "#14A88D",
+        leaf: "#45B36B",
+        coral: "#F26B4F",
+        paper: "#F6FAF8",
       },
       boxShadow: {
-        soft: "0 20px 60px rgba(23, 32, 42, 0.14)",
+        card: "0 12px 36px rgba(22, 32, 51, 0.07)",
+        soft: "0 24px 70px rgba(22, 32, 51, 0.12)",
       },
     },
   },
