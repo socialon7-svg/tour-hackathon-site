@@ -85,8 +85,8 @@ function ActionLink({
 }) {
   const styles: Record<ButtonVariant, string> = {
     primary: "bg-sky text-white shadow-button hover:-translate-y-0.5 hover:bg-[#1d6fd6]",
-    secondary: "bg-white text-navy ring-1 ring-white/35 hover:-translate-y-0.5 hover:bg-[#f4f9ff]",
-    ghost: "bg-white text-ink ring-1 ring-line hover:-translate-y-0.5 hover:ring-sky/35",
+    secondary: "bg-white text-navy ring-1 ring-line shadow-sm hover:-translate-y-0.5 hover:bg-[#f4f9ff]",
+    ghost: "bg-white text-ink ring-1 ring-line shadow-sm hover:-translate-y-0.5 hover:ring-sky/35",
   };
 
   return (
@@ -102,8 +102,8 @@ function ActionLink({
 
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-white/20 bg-white/10 px-4 py-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.12)] backdrop-blur">
-      <p className="text-xs font-extrabold text-skySoft">{label}</p>
+    <div className="rounded-lg border border-line bg-white/92 px-4 py-4 text-ink shadow-card backdrop-blur">
+      <p className="text-xs font-extrabold text-sky">{label}</p>
       <p className="mt-1 break-keep text-lg font-black">{value}</p>
     </div>
   );
@@ -112,6 +112,7 @@ function MetricCard({ label, value }: { label: string; value: string }) {
 function InfoCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-h-36 rounded-lg border border-line bg-white p-6 shadow-card">
+      <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
       <p className="text-sm font-extrabold text-sky">{label}</p>
       <p className="mt-4 break-keep text-xl font-black leading-8 text-ink">{value}</p>
     </div>
@@ -121,6 +122,7 @@ function InfoCard({ label, value }: { label: string; value: string }) {
 function BenefitCard({ title, description }: { title: string; description: string }) {
   return (
     <article className="rounded-lg border border-line bg-white p-6 shadow-card">
+      <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
       <h3 className="break-keep text-xl font-black leading-7 text-ink">{title}</h3>
       <p className="mt-4 break-keep text-base leading-8 text-slate">{description}</p>
     </article>
@@ -161,12 +163,13 @@ function PrizeCard({ name, amount, count, featured = false }: { name: string; am
   return (
     <article
       className={`rounded-lg border p-6 shadow-card ${
-        featured ? "border-sky bg-navy text-white" : "border-line bg-white text-ink"
+        featured ? "border-sky bg-[#f7fbff] text-ink ring-1 ring-sky/15" : "border-line bg-white text-ink"
       }`}
     >
-      <p className={`text-sm font-extrabold ${featured ? "text-skySoft" : "text-sky"}`}>{count}</p>
+      <div className={`mb-5 h-1 w-10 rounded-full ${featured ? "bg-sky" : "bg-[#c7d9ee]"}`} />
+      <p className="text-sm font-extrabold text-sky">{count}</p>
       <h3 className="mt-3 text-xl font-black">{name}</h3>
-      <p className={`mt-5 text-4xl font-black ${featured ? "text-white" : "text-sky"}`}>{amount}</p>
+      <p className="mt-5 text-4xl font-black text-sky">{amount}</p>
     </article>
   );
 }
@@ -202,26 +205,26 @@ export default function Home() {
         </Container>
       </nav>
 
-      <section id="hero" className="relative isolate overflow-hidden bg-navy text-white">
+      <section id="hero" className="relative isolate overflow-hidden bg-[#eef6ff] text-ink">
         <Image
           src={event.heroImage}
           alt="대구 관광 빅데이터 해커톤을 표현한 대학 행사 이미지"
           fill
           priority
-          className="object-cover object-center opacity-60"
+          className="object-cover object-center opacity-80"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,27,56,0.98)_0%,rgba(7,27,56,0.92)_46%,rgba(20,103,178,0.55)_74%,rgba(56,189,248,0.12)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_43%,rgba(235,246,255,0.76)_68%,rgba(235,246,255,0.3)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#eef6ff] to-transparent" />
 
         <Container className="relative flex min-h-[calc(100vh-76px)] flex-col justify-center py-16 sm:py-20">
           <div className="max-w-4xl">
-            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-extrabold text-skySoft backdrop-blur">
+            <p className="inline-flex rounded-full border border-line bg-white/90 px-4 py-2 text-sm font-extrabold text-sky shadow-sm backdrop-blur">
               {event.organizer} · {event.subtitle}
             </p>
             <h1 className="mt-7 max-w-[860px] break-keep text-[42px] font-black leading-[1.08] tracking-normal sm:text-6xl lg:text-[76px]">
               대구 관광 데이터를 활용한 지역혁신 해커톤
             </h1>
-            <p className="mt-7 max-w-2xl break-keep text-lg font-semibold leading-9 text-white/82 sm:text-xl">
+            <p className="mt-7 max-w-2xl break-keep text-lg font-semibold leading-9 text-slate sm:text-xl">
               {event.introduction}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -242,7 +245,7 @@ export default function Home() {
 
           <div
             id="deadline"
-            className="mt-8 grid max-w-3xl gap-4 rounded-lg border border-white/20 bg-white p-5 text-ink shadow-soft sm:grid-cols-[1fr_auto] sm:items-center sm:p-6"
+            className="mt-8 grid max-w-3xl gap-4 rounded-lg border border-line bg-white/96 p-5 text-ink shadow-soft backdrop-blur sm:grid-cols-[1fr_auto] sm:items-center sm:p-6"
           >
             <div>
               <p className="text-sm font-extrabold text-sky">접수마감 정보</p>
@@ -295,6 +298,7 @@ export default function Home() {
         />
         <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr]">
           <div className="rounded-lg border border-line bg-white p-6 shadow-card">
+            <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
             <p className="text-sm font-extrabold text-sky">모집대상</p>
             <ul className="mt-5 space-y-4">
               {event.target.map((item) => (
@@ -306,10 +310,12 @@ export default function Home() {
             </ul>
           </div>
           <div className="rounded-lg bg-navy p-7 text-white shadow-soft">
+            <div className="mb-5 h-1 w-10 rounded-full bg-skySoft" />
             <p className="text-sm font-extrabold text-skySoft">대회 주제</p>
             <h2 className="mt-5 break-keep text-3xl font-black leading-[1.35]">{event.theme}</h2>
           </div>
           <div className="rounded-lg border border-line bg-white p-6 shadow-card">
+            <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
             <p className="text-sm font-extrabold text-sky">활용 데이터</p>
             <ul className="mt-5 space-y-3">
               {event.dataSources.map((item) => (
