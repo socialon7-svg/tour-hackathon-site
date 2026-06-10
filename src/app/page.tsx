@@ -109,6 +109,15 @@ function MetricCard({ label, value }: { label: string; value: string }) {
   );
 }
 
+function ConversionPoint({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-2 rounded-lg border border-[#e6eff8] bg-white px-4 py-3 text-sm font-bold leading-6 text-[#31516f] shadow-card">
+      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
+      <span className="break-keep">{text}</span>
+    </li>
+  );
+}
+
 function InfoCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-h-36 rounded-lg border border-line bg-white p-6 shadow-card">
@@ -174,6 +183,35 @@ function PrizeCard({ name, amount, count, featured = false }: { name: string; am
   );
 }
 
+function ApplyStepCard({ index, title, description }: { index: number; title: string; description: string }) {
+  return (
+    <article className="rounded-lg border border-[#e2edf8] bg-[#fbfdff] p-5">
+      <p className="text-xs font-black text-sky">STEP {index + 1}</p>
+      <h3 className="mt-3 break-keep text-lg font-black text-ink">{title}</h3>
+      <p className="mt-3 break-keep text-sm leading-6 text-slate">{description}</p>
+    </article>
+  );
+}
+
+function MobileApplyBar({ closed, daysLeft }: { closed: boolean; daysLeft: number }) {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#dbe8f5] bg-white/95 px-4 py-3 shadow-[0_-12px_30px_rgba(8,42,82,0.08)] backdrop-blur md:hidden">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-black text-sky">{closed ? "모집 상태" : `마감까지 D-${daysLeft}`}</p>
+          <p className="mt-0.5 truncate text-sm font-black text-ink">{closed ? "접수마감" : "최종 10개 팀 선발"}</p>
+        </div>
+        <a
+          className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg bg-[#2f80ed] px-5 text-sm font-extrabold text-white shadow-[0_6px_14px_rgba(47,128,237,0.12)]"
+          href={closed ? "#deadline" : event.applicationUrl}
+        >
+          {closed ? "마감 확인" : "신청하기"}
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const closed = isRegistrationClosed(event.registrationDeadline);
   const deadlineText = formatDeadline(event.registrationDeadline);
@@ -181,7 +219,7 @@ export default function Home() {
   const applyLabel = closed ? "접수마감" : "신청하기";
 
   return (
-    <main className="bg-[#fbfdff]">
+    <main className="bg-[#fbfdff] pb-24 md:pb-0">
       <nav className="sticky top-0 z-40 border-b border-[#eaf1f8] bg-white text-ink shadow-[0_1px_14px_rgba(11,31,58,0.035)]">
         <Container className="flex items-center justify-between gap-4 py-4">
           <a className="text-xl font-black tracking-normal text-ink sm:text-2xl" href="#hero">
@@ -227,6 +265,11 @@ export default function Home() {
             <p className="mt-5 max-w-2xl break-keep text-[15px] font-medium leading-8 text-[#607286] sm:mt-7 sm:text-xl sm:font-semibold sm:leading-9 sm:text-slate">
               {event.introduction}
             </p>
+            <ul className="mt-6 grid max-w-4xl gap-2 sm:grid-cols-3">
+              {event.conversionPoints.map((point) => (
+                <ConversionPoint key={point} text={point} />
+              ))}
+            </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href={closed ? "#deadline" : event.applicationUrl}>{applyLabel}</ActionLink>
               <ActionLink href={event.applicationFormUrl} variant="secondary" download>
@@ -251,7 +294,10 @@ export default function Home() {
             <div>
               <p className="text-sm font-extrabold text-sky">접수마감 정보</p>
               <p className="mt-2 text-2xl font-black">{closed ? "접수마감" : "현재 모집 중"}</p>
-              <p className="mt-2 text-base leading-7 text-slate">마감: {deadlineText}</p>
+              <p className="mt-2 text-base leading-7 text-slate">
+                {closed ? "모집이 종료되었습니다." : `마감까지 D-${daysLeft}. 신청서 제출 기준으로 접수됩니다.`}
+              </p>
+              <p className="mt-1 text-sm leading-6 text-slate">마감: {deadlineText}</p>
             </div>
             <div className="rounded-lg bg-[#f8fbff] px-4 py-3 text-left sm:text-right">
               <p className="text-sm font-extrabold text-sky">제출처</p>
@@ -264,8 +310,8 @@ export default function Home() {
       <Section id="intro">
         <SectionHeading
           eyebrow="행사 소개"
-          title="아이디어를 모집하는 공모전이 아니라, 결과물을 완성하는 2개월 프로젝트"
-          description="선발된 10개 팀은 전문가 멘토링과 팀별 활동 지원을 바탕으로 대구 관광 아이디어를 실제 제안 가능한 수준까지 끌어올립니다."
+          title="선발되면 끝까지 완성할 수 있도록 지원하는 2개월 프로젝트"
+          description="참가자는 아이디어만 제출하고 끝나는 것이 아니라, 전문가 멘토링과 팀별 활동 지원을 바탕으로 대구 관광 아이디어를 실제 제안 가능한 수준까지 끌어올립니다."
         />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
@@ -358,22 +404,29 @@ export default function Home() {
       </Section>
 
       <Section id="apply" tone="blue">
-        <div className="grid items-center gap-8 rounded-lg border border-sky/15 bg-white p-6 shadow-soft md:grid-cols-[1fr_auto] md:p-10">
-          <div>
-            <p className="text-sm font-extrabold text-sky">신청 방법</p>
-            <h2 className="mt-3 break-keep text-3xl font-black leading-tight text-ink sm:text-4xl">
-              팀이 정해졌다면, 신청서부터 먼저 제출하세요
-            </h2>
-            <p className="mt-5 max-w-2xl break-keep text-base leading-8 text-slate">
-              최종 선발 규모는 10개 팀입니다. 신청서를 다운로드해 작성한 뒤 {event.contactEmail}으로 제출하세요.
-              제출 자료를 바탕으로 전문 심사위원 4인이 선발하며, 선발 팀에는 멘토링과 본선 발표 준비 과정이 제공됩니다.
-            </p>
+        <div className="rounded-lg border border-sky/15 bg-white p-6 shadow-soft md:p-10">
+          <div className="grid items-center gap-8 md:grid-cols-[1fr_auto]">
+            <div>
+              <p className="text-sm font-extrabold text-sky">신청 방법</p>
+              <h2 className="mt-3 break-keep text-3xl font-black leading-tight text-ink sm:text-4xl">
+                아이디어가 완성되지 않았어도, 먼저 신청하세요
+              </h2>
+              <p className="mt-5 max-w-2xl break-keep text-base leading-8 text-slate">
+                최종 선발 규모는 10개 팀입니다. 신청서를 다운로드해 작성한 뒤 {event.contactEmail}으로 제출하세요.
+                선발 후 멘토링 과정에서 데이터 분석 방향과 발표 결과물을 함께 구체화할 수 있습니다.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+              <ActionLink href={closed ? "#deadline" : event.applicationUrl}>{applyLabel}</ActionLink>
+              <ActionLink href={event.applicationFormUrl} variant="ghost" download>
+                신청서 다운로드
+              </ActionLink>
+            </div>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-            <ActionLink href={closed ? "#deadline" : event.applicationUrl}>{applyLabel}</ActionLink>
-            <ActionLink href={event.applicationFormUrl} variant="ghost" download>
-              신청서 다운로드
-            </ActionLink>
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            {event.applySteps.map((step, index) => (
+              <ApplyStepCard key={step.title} index={index} title={step.title} description={step.description} />
+            ))}
           </div>
         </div>
       </Section>
@@ -396,6 +449,7 @@ export default function Home() {
           </a>
         </div>
       </footer>
+      <MobileApplyBar closed={closed} daysLeft={daysLeft} />
     </main>
   );
 }
