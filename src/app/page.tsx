@@ -84,7 +84,7 @@ function ActionLink({
   download?: boolean;
 }) {
   const styles: Record<ButtonVariant, string> = {
-    primary: "bg-sky text-white shadow-button hover:-translate-y-0.5 hover:bg-[#1d6fd6]",
+    primary: "bg-sky text-white shadow-[0_8px_18px_rgba(47,128,237,0.16)] hover:-translate-y-0.5 hover:bg-[#276fd0] sm:shadow-button",
     secondary: "bg-white text-navy ring-1 ring-line shadow-sm hover:-translate-y-0.5 hover:bg-[#f4f9ff]",
     ghost: "bg-white text-ink ring-1 ring-line shadow-sm hover:-translate-y-0.5 hover:ring-sky/35",
   };
@@ -102,7 +102,7 @@ function ActionLink({
 
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-line bg-white/92 px-4 py-4 text-ink shadow-card backdrop-blur">
+    <div className="rounded-lg border border-line bg-white/98 px-4 py-4 text-ink shadow-card backdrop-blur">
       <p className="text-xs font-extrabold text-sky">{label}</p>
       <p className="mt-1 break-keep text-lg font-black">{value}</p>
     </div>
@@ -205,26 +205,26 @@ export default function Home() {
         </Container>
       </nav>
 
-      <section id="hero" className="relative isolate overflow-hidden bg-[#eef6ff] text-ink">
+      <section id="hero" className="relative isolate overflow-hidden bg-[#f6fbff] text-ink">
         <Image
           src={event.heroImage}
           alt="대구 관광 빅데이터 해커톤을 표현한 대학 행사 이미지"
           fill
           priority
-          className="object-cover object-center opacity-80"
+          className="object-cover object-center opacity-20 sm:opacity-70"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_43%,rgba(235,246,255,0.76)_68%,rgba(235,246,255,0.3)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#eef6ff] to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.99)_0%,rgba(248,251,255,0.98)_56%,rgba(244,250,255,0.97)_100%)] sm:bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_43%,rgba(235,246,255,0.78)_68%,rgba(235,246,255,0.42)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f6fbff] to-transparent" />
 
-        <Container className="relative flex min-h-[calc(100vh-76px)] flex-col justify-center py-16 sm:py-20">
+        <Container className="relative flex min-h-[calc(100svh-76px)] flex-col justify-center py-12 sm:min-h-[calc(100vh-76px)] sm:py-20">
           <div className="max-w-4xl">
-            <p className="inline-flex rounded-full border border-line bg-white/90 px-4 py-2 text-sm font-extrabold text-sky shadow-sm backdrop-blur">
+            <p className="inline-flex rounded-full border border-line bg-white/95 px-3.5 py-2 text-xs font-extrabold text-sky shadow-sm backdrop-blur sm:px-4 sm:text-sm">
               {event.organizer} · {event.subtitle}
             </p>
-            <h1 className="mt-7 max-w-[860px] break-keep text-[42px] font-black leading-[1.08] tracking-normal sm:text-6xl lg:text-[76px]">
+            <h1 className="mt-6 max-w-[860px] break-keep text-[32px] font-black leading-[1.17] tracking-normal text-ink sm:mt-7 sm:text-6xl sm:leading-[1.08] lg:text-[76px]">
               대구 관광 데이터를 활용한 지역혁신 해커톤
             </h1>
-            <p className="mt-7 max-w-2xl break-keep text-lg font-semibold leading-9 text-slate sm:text-xl">
+            <p className="mt-5 max-w-2xl break-keep text-base font-medium leading-8 text-[#4b5f74] sm:mt-7 sm:text-xl sm:font-semibold sm:leading-9">
               {event.introduction}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -246,14 +246,14 @@ export default function Home() {
 
           <div
             id="deadline"
-            className="mt-8 grid max-w-3xl gap-4 rounded-lg border border-line bg-white/96 p-5 text-ink shadow-soft backdrop-blur sm:grid-cols-[1fr_auto] sm:items-center sm:p-6"
+            className="mt-8 grid max-w-3xl gap-4 rounded-lg border border-line bg-white/98 p-5 text-ink shadow-card backdrop-blur sm:grid-cols-[1fr_auto] sm:items-center sm:p-6 sm:shadow-soft"
           >
             <div>
               <p className="text-sm font-extrabold text-sky">접수마감 정보</p>
               <p className="mt-2 text-2xl font-black">{closed ? "접수마감" : "현재 모집 중"}</p>
               <p className="mt-2 text-base leading-7 text-slate">마감: {deadlineText}</p>
             </div>
-            <div className="rounded-lg bg-[#eef6ff] px-4 py-3 text-left sm:text-right">
+            <div className="rounded-lg bg-[#f4f9ff] px-4 py-3 text-left sm:text-right">
               <p className="text-sm font-extrabold text-sky">제출처</p>
               <p className="mt-1 break-all text-lg font-black text-ink">{event.contactEmail}</p>
             </div>
@@ -310,10 +310,10 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-navy p-7 text-white shadow-soft">
-            <div className="mb-5 h-1 w-10 rounded-full bg-skySoft" />
-            <p className="text-sm font-extrabold text-skySoft">대회 주제</p>
-            <h2 className="mt-5 break-keep text-3xl font-black leading-[1.35]">{event.theme}</h2>
+          <div className="rounded-lg border border-sky/20 bg-[#f4f9ff] p-7 text-ink shadow-card">
+            <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
+            <p className="text-sm font-extrabold text-sky">대회 주제</p>
+            <h2 className="mt-5 break-keep text-3xl font-black leading-[1.35] text-ink">{event.theme}</h2>
           </div>
           <div className="rounded-lg border border-line bg-white p-6 shadow-card">
             <div className="mb-5 h-1 w-10 rounded-full bg-sky" />
