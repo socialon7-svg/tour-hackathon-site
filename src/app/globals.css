@@ -4,17 +4,20 @@
 
 /* Global page polish shared by every component. */
 :root {
-  color-scheme: light;
+  color-scheme: only light;
+  background: #fbfdff;
 }
 
 html {
   scroll-behavior: smooth;
+  background: #fbfdff;
+  color-scheme: only light;
 }
 
 body {
   margin: 0;
-  background: #f8fbff;
-  color: #0b1f3a;
+  background: #fbfdff !important;
+  color: #0b1f3a !important;
   font-family:
     Arial,
     "Apple SD Gothic Neo",
@@ -22,6 +25,16 @@ body {
     sans-serif;
   word-break: keep-all;
   overflow-wrap: anywhere;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  body {
+    background: #fbfdff !important;
+    color: #0b1f3a !important;
+    color-scheme: only light;
+  }
 }
 
 /* Keep section anchors visible below the sticky navigation. */
