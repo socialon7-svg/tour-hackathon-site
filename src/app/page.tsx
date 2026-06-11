@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { event } from "@/data/event";
 
+export const dynamic = "force-dynamic";
+
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
 function isRegistrationClosed(deadline: string) {
@@ -216,11 +218,14 @@ export default function Home() {
   const closed = isRegistrationClosed(event.registrationDeadline);
   const deadlineText = formatDeadline(event.registrationDeadline);
   const daysLeft = getDaysLeft(event.registrationDeadline);
-  const applyLabel = closed ? "접수마감" : "신청하기";
+  const applyLabel = closed ? "접수마감" : "지금 신청하기";
 
   return (
-    <main className="bg-[#fbfdff] pb-24 md:pb-0">
-      <nav className="sticky top-0 z-40 border-b border-[#eaf1f8] bg-white text-ink shadow-[0_1px_14px_rgba(11,31,58,0.035)]">
+    <main id="main-content" className="bg-[#fbfdff] pb-24 md:pb-0">
+      <nav
+        aria-label="주요 메뉴"
+        className="sticky top-0 z-40 border-b border-[#eaf1f8] bg-white text-ink shadow-[0_1px_14px_rgba(11,31,58,0.035)]"
+      >
         <Container className="flex items-center justify-between gap-4 py-4">
           <a className="text-xl font-black tracking-normal text-ink sm:text-2xl" href="#hero">
             APBL 2026
@@ -248,7 +253,7 @@ export default function Home() {
           src={event.heroImage}
           alt="대구 관광 빅데이터 해커톤을 표현한 대학 행사 이미지"
           fill
-          priority
+          sizes="(min-width: 640px) 100vw, 0px"
           className="hidden object-cover object-center sm:block sm:opacity-60"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#ffffff_42%,#f7fbff_100%)] sm:bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.96)_47%,rgba(241,248,255,0.86)_72%,rgba(241,248,255,0.58)_100%)]" />

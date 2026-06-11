@@ -24,6 +24,25 @@ export type ApplyStep = {
   description: string;
 };
 
+const contactEmail = "high3308@naver.com";
+const applicationSubject = "APBL 프로젝트 참가신청";
+const applicationBody = [
+  "APBL 프로젝트 참가신청서를 제출합니다.",
+  "",
+  "[팀 정보]",
+  "- 팀명:",
+  "- 대표자 성명:",
+  "- 대표자 연락처:",
+  "- 팀원 수:",
+  "",
+  "[아이디어 요약]",
+  "- 주제:",
+  "- 활용하고 싶은 데이터:",
+  "- 해결하고 싶은 대구 관광 문제:",
+  "",
+  "신청서를 작성해 이 메일에 첨부해 주세요.",
+].join("\n");
+
 export const event = {
   title: "APBL 프로젝트",
   subtitle: "빅데이터 기반 지역혁신 프로젝트",
@@ -36,10 +55,11 @@ export const event = {
   capacity: "10개 팀",
   teamSize: "팀당 2~4인",
   // 작년 모집 페이지의 신청 흐름을 참고해 신청서 작성 후 이메일 제출 방식으로 연결했습니다.
-  applicationUrl:
-    "mailto:high3308@naver.com?subject=APBL%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%B0%B8%EA%B0%80%EC%8B%A0%EC%B2%AD",
+  applicationUrl: `mailto:${contactEmail}?subject=${encodeURIComponent(applicationSubject)}&body=${encodeURIComponent(
+    applicationBody,
+  )}`,
   applicationFormUrl: "/downloads/apbl-application-form.txt",
-  contactEmail: "high3308@naver.com",
+  contactEmail,
   contactPhone: "000-000-0000",
   officeHours: "월~금 10:30~17:30",
   heroImage: "/images/apbl-hero.png",

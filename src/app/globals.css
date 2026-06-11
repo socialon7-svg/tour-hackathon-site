@@ -45,3 +45,27 @@ section {
 a {
   text-decoration: none;
 }
+
+:focus-visible {
+  outline: 3px solid #2f80ed;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 100;
+  transform: translateY(-160%);
+  border-radius: 8px;
+  background: #0b1f3a;
+  color: #ffffff;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
